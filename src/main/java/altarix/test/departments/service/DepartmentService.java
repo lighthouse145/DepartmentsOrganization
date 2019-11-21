@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface DepartmentService {
-    void createDepartment(Department department);
+    Department createDepartment(Department department);
 
-    void updateDepartmentName(Department department, String name);
+    Department updateDepartmentName(String newName, Department department);
 
     void deleteDepartment(Department department);
 
@@ -22,7 +22,7 @@ public interface DepartmentService {
 
     List<Department> getAllHigherDepartmentsByName(Department department);
 
-    Department getDepartmentByName(String name);
+    Department getByName(String name);
 
     BigDecimal getDepartmentSalaryByName(String name);
 }

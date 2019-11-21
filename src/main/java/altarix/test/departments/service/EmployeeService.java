@@ -9,11 +9,11 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> findAllEmployees(Long departmentId);
 
-    void createEmployee(Employee employee);
+    Employee createEmployee(Employee employee);
 
-    void updateEmployee(Employee employee);
+    Employee updateEmployee(Employee employee);
 
-    void dismissEmployee(Employee employee, Date date);
+    Employee dismissEmployee(Employee employee, Date date);
 
     Employee getEmployeeById(Long employeeId);
 
@@ -21,9 +21,7 @@ public interface EmployeeService {
 
     void moveAllEmployeesToOtherDepartment(List<Employee> employees, Department department);
 
-    Employee getEmployeeLead(Employee employee);
+    Employee getEmployeeLeader(Employee employee);
 
     List<Employee> findEmployeesByGender(String gender);
-
-    List<Employee> findLaders();
 }

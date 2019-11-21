@@ -1,24 +1,26 @@
 package altarix.test.departments.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.LinkedList;
+import java.util.Date;
 import java.util.List;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "department")
 public class Department {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "department_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "department_id")
     private Long id;
 
     @Column(name = "department_name", nullable = false, length = 40)
@@ -30,48 +32,8 @@ public class Department {
     @Column(name = "parent_department")
     private Long parentDepartmentId;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Employee> employees = new LinkedList<>();
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDataCreate(Date dataCreate) {
-        this.dataCreate = dataCreate;
-    }
-
-    public void setParentDepartmentId(Long parentDepartmentId) {
-        this.parentDepartmentId = parentDepartmentId;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Date getDataCreate() {
-        return dataCreate;
-    }
-
-    public Long getParentDepartmentId() {
-        return parentDepartmentId;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    private List<Employee> employees;
 
     @Override
     public String toString() {
@@ -79,7 +41,7 @@ public class Department {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dataCreate=" + dataCreate +
-                ", parentDepartment=" + parentDepartmentId +
+                ", parentDepartmentId=" + parentDepartmentId +
                 '}';
     }
 }

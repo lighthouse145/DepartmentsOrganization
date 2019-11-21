@@ -8,9 +8,12 @@ import java.util.List;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
-    List<Department> findAll();
 
-    Department findDepartmentByName(String name);
+    Department getByName(String name);
+
+    Department getById(Long id);
+
+    List<Department> findAll();
 
     List<Department> findAllByParentDepartmentId(Long id);
 }

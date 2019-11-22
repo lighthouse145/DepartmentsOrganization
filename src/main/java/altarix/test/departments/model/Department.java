@@ -9,6 +9,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import static org.hibernate.sql.InFragment.NULL;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,16 +25,17 @@ public class Department {
     @Column(name = "department_id")
     private Long id;
 
-    @Column(name = "department_name", nullable = false, length = 40)
+    @Column(name = "department_name", nullable = false, length = 60, unique = true)
     private String name;
 
     @Column(name = "data_create", nullable = false)
     private Date dataCreate;
 
-    @Column(name = "parent_department")
+    @Column(name = "parent_department", columnDefinition = NULL)
     private Long parentDepartmentId;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @Column(columnDefinition = NULL)
     private List<Employee> employees;
 
     @Override

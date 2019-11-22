@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import static org.hibernate.sql.InFragment.NULL;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +22,7 @@ import java.util.Date;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id", nullable = false)
+    @Column(name = "employee_id")
     private Long id;
 
     @Column(name = "last_name", nullable = false, length = 40)
@@ -61,7 +63,7 @@ public class Employee {
     private Boolean leaderFlag;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="department_id")
+    @JoinColumn(name = "department_id", columnDefinition = NULL)
     private Department department;
 
     @Override

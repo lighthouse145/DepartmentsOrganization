@@ -8,21 +8,21 @@ import java.util.List;
 public interface DepartmentService {
     Department createDepartment(Department department);
 
-    Department updateDepartmentName(String newName, Department department);
+    Department updateDepartmentName(String newName, String nameDepartment);
 
-    void deleteDepartment(Department department);
+    void deleteDepartment(String nameDepartment);
 
-    String getDepartmentInfoByName(String name);
+    String getDepartmentInfoByName(String nameDepartment);
 
-    List<Department> getChildrenDepartments(Department department);
+    List<Department> getChildrenDepartments(String nameDepartment);
 
-    List<Department> getAllDependentDepartments(Department department);
+    List<Department> getAllDependentDepartments(String nameDepartment);
 
-    void changeDepartmentParent(Department departmentChild, Department departmentParent);
+    Department changeDepartmentParent(String nameChildDepartment, String nameNewParentDepartment);
 
-    List<Department> getAllHigherDepartmentsByName(Department department);
+    List<Department> getAllHigherDepartments(String nameDepartment);
 
-    Department getByName(String name);
+    Department getByName(String nameDepartment);
 
-    BigDecimal getDepartmentSalaryByName(String name);
+    BigDecimal getDepartmentSalaryByName(String nameDepartment);
 }

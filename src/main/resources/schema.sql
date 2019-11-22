@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS department;
 
 CREATE TABLE department(
         department_id SERIAL PRIMARY KEY ,
-        department_name varchar(50) NOT NULL UNIQUE ,
+        department_name varchar(60) NOT NULL UNIQUE ,
         data_create date NOT NULL ,
         parent_department  INTEGER REFERENCES department(department_id) ON DELETE CASCADE
 );
@@ -22,5 +22,5 @@ CREATE TABLE employee(
         employee_position varchar(40) NOT NULL ,
         salary money NOT NULL ,
         leader_flag BOOL,
-        department_id INTEGER NOT NULL REFERENCES department (department_id)
+        department_id INTEGER REFERENCES department (department_id)
 );
